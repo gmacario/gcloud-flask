@@ -1,0 +1,19 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: ssl
+  version: latest
+
+handlers:
+- url: /api/.*
+  script: main.app
+
+- url: /(.*\.(gif|png|jpg|css|js)(|\.map))$
+  static_files: ang/\1
+  upload: ang/(.*)(|\.map)
+
+- url: /(.*)
+  static_files: ang/index.html
+  upload: ang/index.html
