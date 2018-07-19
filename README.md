@@ -1,4 +1,4 @@
-# Test GLcoud con flask e OAuth2
+# Test GLcoud con flask e OAuth2
 
 Copy credentials in main folder, then:
 
