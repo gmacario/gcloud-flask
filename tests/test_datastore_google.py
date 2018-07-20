@@ -13,3 +13,13 @@ def test_api(app):
     MyTestModel(number=1, text="text").put()
     print MyTestModel.query().fetch()
     assert len(MyTestModel.query().fetch()) == 1
+
+def test_key(app):
+    mod = MyTestModel(number=1, text="text")
+    mod.put()
+    
+    key = mod.key
+
+    assert mod == key.get()
+    url_safe = key.urlsafe()
+    assert ndb.Key(urlsafe = url_safe).get() == mod

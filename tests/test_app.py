@@ -15,31 +15,6 @@ def test_api_simple_query(client):
     assert res.status_code == 200
     assert res.is_json
 
-def test_question_model(app):
-    quest = QuestionModel(
-        type = 'boolean',
-        category = "Science",
-        difficulty = 1,
-        question = "Test Question",
-        correct_answer = "True"
-    )
-
-    quest.put()
-    quests = QuestionModel.query().fetch()
-    assert len(quests) == 1
-    quest = QuestionModel.query().get()
-    assert quest.incorrect_answers  == []
-
-def test_question_model_validation(app):
-    with pytest.raises(ValueError):
-        quest = QuestionModel(
-            type = 'boolean',
-            category = "Science",
-            difficulty = 10,
-            question = "Test Question",
-            correct_answer = "True"
-        )
-
 def generate_random_question():
     qtype = random.choice(['boolean', 'multiple'])
     category = random.choice(['Science', 'History', 'Film'])
